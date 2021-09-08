@@ -1,0 +1,17 @@
+Infinite Loops 
+
+Scrum Meeting 1 : September 08, 2021
+
+1. What is Log4j and unit testing? When will that be covered?
+
+2. Employee requires for transactions? Is it customer to customer? Do you need verification from system?
+
+3. Should user provide username and password to access their accounts?
+
+4. Are we required to complete the stretch goal as a part of the total 26 points?
+
+5. Clarification on authentifications by the employees to approve or deny?
+	- How do they approve or deny using the system?
+
+6. Clarifications on starting account with a balance?
+	- What do we do if they are not approved, but we have accepted their money?
