@@ -34,23 +34,6 @@ public class LoginMenu implements Menu {
 	
 	public LoginMenu() {
 	}
-
-//	private void prettyDisplayOfInfo() {
-//		
-////		for(int i = 0; i < userArray.length; i++) { // add User[] userArray arg
-////			
-////			if(userArray[i] != null) {
-////				System.out.println("Name: " + userArray[i].getName());
-////				System.out.println("Account balance: " + userArray[i].getBalance());
-////				System.out.println("Employee status: " +userArray[i].isEmployee());
-////				System.out.println("");
-////			}
-////		}
-//				System.out.println("Name: " + user.getFname() + " " + user.getLname());
-//				System.out.println("Account balance: " + account.getBalance());
-//				System.out.println("Employee status: " +user.isEmployee());
-//				System.out.println(" ");	
-//	}
 	
 	public void userLoginMenu() {
 		System.out.println("Welcome to the Bank!");
@@ -88,56 +71,21 @@ public class LoginMenu implements Menu {
 				
 				switch(entry) {
 				case 1:
-//					System.out.println("Welcome back customer! Please enter your credentials: ");
-//					System.out.println("");
-//					System.out.println("Username: ");
-//					String username = sc.nextLine();
-//					System.out.println("Password");
-//					String password = sc.nextLine();
-//					
-//					auth.authenticate(username, password);
-//					
-//					boolean isAuthenticated = false;
-//					
-//					isAuthenticated = display();
-//					if(!isAuthenticated) 
-//					{
-//						for(int i=1;i<=2 || !isAuthenticated; i++)
-//						{
-//							if(!isAuthenticated) {
-//								isAuthenticated = this.display();
-//							}else {
-//								i = 3;
-//							}
-//						}
-//					}
-//						
-	
 					custMenu.displayCustomerMenu(userId);
 					userLoginMenu();
-					
 					break;
 				case 2:
-					
-//					boolean isAuthenticated2 = false;
-//					for(int i=0;i<=3 || !isAuthenticated2; i++) {
-//						isAuthenticated2 = this.display();
-//					}
-				
 					empMenu.displayEmployeeMenu(userId);
-					
 					break;
 				default:
 					System.out.println("Invalid entry! Please try again!");
 					display();
 				}
-				
 				break;
 			case "2":
 				System.out.println("\n Hello!");
 				custMenu.createUserAccount();
 				userLoginMenu();
-				
 				break;
 			case "3":
 				System.out.println("Good-bye!");
@@ -148,49 +96,6 @@ public class LoginMenu implements Menu {
 		
 		
 	}
-	
-//	public boolean createUserAccount() {
-//		ConnectionUtil connectionUtil = new ConnectionUtil();
-//		User user = new User();
-//		
-//		boolean success = false;
-//		//1. Connect to database!
-//		try{
-//			
-//			System.out.println("Please enter the following information: ");
-//			System.out.println(" ");
-//
-//			Scanner sc = new Scanner(System.in);
-//			
-//			System.out.println("Username: ");
-//			String usrname = sc.nextLine();
-//			System.out.println("Password: ");
-//			String passwrd = sc.nextLine();
-//			
-//			Connection connection = connectionUtil.getConnection();
-////			
-//			String sql = "INSERT INTO user_table (username, password) VALUES (?,?)";
-////			
-//			PreparedStatement ps = connection.prepareStatement(sql);
-////			
-//			ps.setString(1, usrname);
-//			ps.setString(2, passwrd);
-//			
-//			ps.execute();
-//			
-//			success = true;
-//		
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("Thank you for creating an account!");
-//		
-//		return success;
-//			
-//			
-//	}
 	
 	
 	public boolean createNewApplication() {

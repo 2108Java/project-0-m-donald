@@ -30,6 +30,7 @@ public class EmployeeMenu extends Employee {
 	BankService service;
 	Account account;
 	Customer cust;
+	Menu menu;
 
 	CustomerDAO custDao;
 
@@ -141,14 +142,14 @@ public class EmployeeMenu extends Employee {
 					System.out.println("Balance: " + account.getBalance()+"\n\n");
 				} else {
 					System.out.println("Account does not exist.\n\n");
-					loggy.info("Account does not exist");
+					loggy.warn("Account does not exist");
 				}
 				displayEmployeeMenu(userId);
 				break;
 			case 4: //Exits to main menu
 				System.out.println("Thank you! Come again!");
 				loggy.info("User has exited the employee menu");
-	//			mainMenu.userLoginMenu();
+//				menu.display();
 				break;
 			}
 	}
@@ -156,38 +157,38 @@ public class EmployeeMenu extends Employee {
 	public Account selectCustomerAccount(int cust_id) {
 		// TODO Auto-generated method stub
 		
-//		boolean success = false;
-//		
-//		account = new Account();
-//		
-//		try
-//		{
-//			
-//			Connection connection = connectionUtil.getConnection();
-//			
-//			String sql = "SELECT * FROM account_table WHERE foreign_primary_custID = ?";
-//			
-//			PreparedStatement ps = connection.prepareStatement(sql);
-//
-//			ps.setInt(1, cust_id);		
-//
-//			ResultSet rs = ps.executeQuery();
-//
-//			while(rs.next()) {
-//			
-//			 account.setCust_id(rs.getInt("primary_custId"));
+		boolean success = false;
+		
+		account = new Account();
+		
+		try
+		{
+			
+			Connection connection = connectionUtil.getConnection();
+			
+			String sql = "SELECT * FROM account_table WHERE foreign_primary_custID = ?";
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, cust_id);		
+
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+			
+			 account.setAcc_id(rs.getInt(1));
 //			 account.setFname(rs.getString("cust_fname"));
 //			 account.setLname(rs.getString("cust_lname"));
 //			 account.setPhoneNum(rs.getString("cust_phoneNum"));
 //			 account.setDob(rs.getString("dob"));
-//			
-//			}
-//		} 
-//		catch (SQLException e) 
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+			
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return account;
 		
@@ -263,23 +264,5 @@ public class EmployeeMenu extends Employee {
 		return custInfo;
 	}
 
-//	public void depositMoney() {
-//		
-//	}
-//	
-//	public void withdrawMoney() {
-//		
-//	}
-//	
-//	public void transferMoney() {
-//		
-//	}
-//	
-//	public void verifyApplication() {
-//		
-//	}
-//	
-//	public void viewAllBalances() {
-//		
-//	}
+
 }

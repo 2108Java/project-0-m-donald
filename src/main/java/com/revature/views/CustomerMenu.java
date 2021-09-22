@@ -175,7 +175,7 @@ public class CustomerMenu {
 				accDao.updateBalance(account.getAcc_id(), afterTransferBalance);
 			} else {
 				System.out.println("Error: Transfer not accepted! ");
-				loggy.info("Error: Transfer not accepted! ");
+				loggy.warn("Error: Transfer not accepted! ");
 			}
 
 			// Transfer To
@@ -190,6 +190,7 @@ public class CustomerMenu {
 				accDao.updateBalance(account.getAcc_id(), recipientTransferBalance);
 			} else {
 				System.out.println("Error: Transfer not accepted! ");
+				loggy.warn("Error: Transfer not accepted! ");
 			}
 
 			System.out.println(fromAcctType.toUpperCase() + " BALANCE: " + afterTransferBalance);

@@ -21,25 +21,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	User user = new User();
 	Employee emp = new Employee();
 	LoginMenu mainMenu = new LoginMenu();
-//	EmployeeMenu empMenu = new EmployeeMenu(null, null, null, null);
 	BankService service;
 	Account account = new Account();
 	
-//	private String dbLocation = "localhost";
-//	private String username = "postgres";
-//	private String password = "miaduuh1";
-//	private String url = "jdbc:postgresql://" + dbLocation + "/postgres";
+
 
 	ConnectionUtil connectionUtil = new ConnectionUtil();
 	
-//	@Override
-//	public boolean approveAccount(Account account, boolean isApproved) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		
-//		return false;
-//	}
 
 	@Override
 	public boolean updateAccount(Account account, boolean isApproved) {

@@ -46,17 +46,6 @@ public class AccountDAOImpl implements AccountDAO{
 				acc.setApproved(rs.getBoolean("isApproved"));
 	
 			
-//			 custInfo.setCust_id(rs.getInt("primary_custId"));
-//			 custInfo.setFname(rs.getString("cust_fname"));
-//			 custInfo.setLname(rs.getString("cust_lname"));
-//			 custInfo.setPhoneNum(rs.getString("cust_phoneNum"));
-//			 custInfo.setDob(rs.getString("dob"));
-//			 custInfo.setAddress(rs.getString("address"));
-//			 custInfo.setCity(rs.getString("city"));
-//			 custInfo.setState(rs.getString("state"));
-//			 custInfo.setZipCode(rs.getString("zipCode"));
-//			 custInfo.setPrimaryCustomer(rs.getBoolean("isPrimaryCustomer"));
-			
 			}
 		} 
 		catch (SQLException e) 
@@ -74,22 +63,6 @@ public class AccountDAOImpl implements AccountDAO{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-//	@Override
-//	public double withdrawMoney(double wthdrwAmount) {
-//		// TODO Auto-generated method stub
-//		
-//		double balance = account.getBalance() - wthdrwAmount;
-//		
-//		if(balance < 0 || wthdrwAmount == 0) {
-//			System.out.println("Insufficient funds! ");
-//			
-//			custMenu.displayCustomerMenu(0);
-//			
-//		}
-//		
-//		return balance;
-//	}
 
 	@Override
 	public double depositMoney(int cust_id, double depositAmount) {
@@ -101,17 +74,14 @@ public class AccountDAOImpl implements AccountDAO{
 			
 		}else {
 			
-//			selectAccountData(cust_id);
-			
-			// GET ACCUNT BALANCE
+			// TODO GET ACCUNT BALANCE
 			balance = account.getBalance();
 			
-			// INSERT TRANSACTION INTO TRANS TABLE 
+			// TODO INSERT TRANSACTION INTO TRANS TABLE 
 	//		insertTransaction();
 			
-			// ADD DEPOSITED AMOUNT TO BALANCE AND UPDATE ACCOUNT table
-			
-	//		account.updateBalance();
+			// TODO ADD DEPOSITED AMOUNT TO BALANCE AND UPDATE ACCOUNT table
+
 			
 			balance += depositAmount;
 			

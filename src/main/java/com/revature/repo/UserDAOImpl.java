@@ -39,15 +39,6 @@ public class UserDAOImpl implements UserDAO {
 			 user.setUser_id(rs.getInt("user_id"));
 			 user.setPassword(rs.getString("passwrd"));
 			 user.setUsername(rs.getString("username"));
-//			 custInfo.setFname(rs.getString("cust_fname"));
-//			 custInfo.setLname(rs.getString("cust_lname"));
-//			 custInfo.setPhoneNum(rs.getString("cust_phoneNum"));
-//			 custInfo.setDob(rs.getString("dob"));
-//			 custInfo.setAddress(rs.getString("address"));
-//			 custInfo.setCity(rs.getString("city"));
-//			 custInfo.setState(rs.getString("state"));
-//			 custInfo.setZipCode(rs.getString("zipCode"));
-//			 custInfo.setPrimaryCustomer(rs.getBoolean("isPrimaryCustomer"));
 			
 			}
 		} 
@@ -95,10 +86,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
-//	@Override
-//	public boolean insertUser(User u) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+
 
 }

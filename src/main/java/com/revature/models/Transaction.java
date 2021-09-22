@@ -41,27 +41,7 @@ public class Transaction extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
-//	public Transaction(int user_id, String username, String password, boolean isEmployee) {
-//		super(user_id, username, password, isEmployee);
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	public Transaction(int user_id, String fname, String lname, int acc_id, int account_num, String accountType,
-//			double balance, boolean isApproved, boolean isDenied) {
-//		super(user_id, fname, lname, acc_id, account_num, accountType, balance, isApproved, isDenied);
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	public Transaction(int user_id, String fname, String lname, String username, String password, boolean isEmployee) {
-//		super(user_id, fname, lname, username, password, isEmployee);
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	public Transaction(int user_id, String fname, String lname) {
-//		super(user_id, fname, lname);
-//		// TODO Auto-generated constructor stub
-//	}
-	
+
 	
 	
 	
