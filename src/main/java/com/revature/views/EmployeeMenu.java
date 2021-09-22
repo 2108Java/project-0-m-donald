@@ -1,6 +1,8 @@
 package com.revature.views;
 
 import java.sql.Connection;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,6 +41,8 @@ public class EmployeeMenu extends Employee {
 
 	EmployeeDAO empDao;
 	
+	private static final Logger loggy = Logger.getLogger(EmployeeMenu.class);
+	
 	public EmployeeMenu(CustomerDAO custDao, UserDAO userDao, AccountDAO accDao, TransactionDAO txnDao, EmployeeDAO empDao) {
 		this.custDao = custDao;
 		this.userDao = userDao;
@@ -49,6 +53,9 @@ public class EmployeeMenu extends Employee {
 	}
 	
 	public void displayEmployeeMenu(int userId) {
+		
+		loggy.setLevel(Level.ALL);
+		
 		// Employee menu explaining all options available to the employee
 		emp = empDao.selectEmployeeById(userId);
 		
@@ -64,8 +71,12 @@ public class EmployeeMenu extends Employee {
 			
 			int choice = sc.nextInt();
 			
+			loggy.setLevel(Level.WARN);
+			
 			switch(choice) {
 			case 1: // Approve a customer account
+				loggy.info("User selected 1");
+				
 				System.out.println("Please enter the customer ID for the account you want to approve:");
 				System.out.println("Customer ID #: ");
 				
@@ -77,9 +88,11 @@ public class EmployeeMenu extends Employee {
 				updateAccount(account, true, userId);
 				
 				System.out.println("You have approved the application for Customer ID#: " + idEntry + "\n\n");
+				loggy.info("You have approved the application for Customer ID#: " + idEntry);
 				displayEmployeeMenu(userId);
 				break;
 			case 2: // Denies a customer account
+				loggy.info("User selected 2");
 				System.out.println("Please enter the customer ID for the account you want to approve:");
 				System.out.println("Customer ID #: ");
 				
@@ -91,11 +104,11 @@ public class EmployeeMenu extends Employee {
 				updateAccount(account, false, userId);
 				
 				System.out.println("You have denied the application for Customer ID#: " + idEntry2 + "\n\n");
-				
+				loggy.info("You have denied the application for Customer ID#: " + idEntry2);
 				displayEmployeeMenu(userId);
 				break;
 			case 3: // Selects customer account and views account info
-
+				loggy.info("User selected 3");
 				
 				System.out.println("Which account?");
 				System.out.println(" ");
@@ -121,17 +134,20 @@ public class EmployeeMenu extends Employee {
 				account = accDao.selectAccountData(viewAcctType, viewAcct);
 				
 				if (account.getAcc_id() > 0) {
+					loggy.info("Customer Info Printed");
 					System.out.println("Customer Name: " + customer3.getFname() + " " + customer3.getLname());
 					System.out.println("Account Number: " + account.getAccount_num());
 					System.out.println("Account Type: " + account.getAccountType());
 					System.out.println("Balance: " + account.getBalance()+"\n\n");
 				} else {
 					System.out.println("Account does not exist.\n\n");
+					loggy.info("Account does not exist");
 				}
 				displayEmployeeMenu(userId);
 				break;
 			case 4: //Exits to main menu
 				System.out.println("Thank you! Come again!");
+				loggy.info("User has exited the employee menu");
 	//			mainMenu.userLoginMenu();
 				break;
 			}

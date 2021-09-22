@@ -1,6 +1,8 @@
 package com.revature.views;
 
 import java.util.Scanner;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import com.revature.models.Customer;
 import com.revature.models.Account;
@@ -23,6 +25,8 @@ public class CustomerMenu {
 	AccountDAO accDao;
 	TransactionDAO txnDao;
 	Transaction txn;
+	
+	private static final Logger loggy = Logger.getLogger(CustomerMenu.class);
 
 	public CustomerMenu(CustomerDAO custDao, UserDAO userDao, AccountDAO accDao, TransactionDAO txnDao) {
 		this.custDao = custDao;
@@ -35,6 +39,8 @@ public class CustomerMenu {
 	ConnectionUtil connectionUtil = new ConnectionUtil();
 
 	public void displayCustomerMenu(int userId) {
+		
+		loggy.setLevel(Level.ALL);
 
 		cust = custDao.selectCustomerById(userId);
 
@@ -54,15 +60,7 @@ public class CustomerMenu {
 
 		switch (choice) {
 		case 1: // Withdraw
-
-//			System.out.println("Which account?");
-//			System.out.println(" ");
-//			System.out.println(" 1) Checking");
-//			System.out.println(" 2) Savings");
-////			System.out.println(" 3) Joint");
-//
-//			// Checks chosen option
-//				sc = new Scanner(System.in);
+			loggy.info("User selected 1");
 
 			int acctChoice = chooseAccount(); // sc.nextInt();
 
@@ -97,6 +95,7 @@ public class CustomerMenu {
 			break;
 
 		case 2: // Deposit
+			loggy.info("User selected 2");
 
 			int acctChoice2 = chooseAccount();
 
@@ -129,6 +128,8 @@ public class CustomerMenu {
 			break;
 
 		case 3: // Post money transfer
+			loggy.info("User selected 3");
+			
 			Scanner scan = new Scanner(System.in);
 
 			System.out.println("Choose account to transfer from: \n");
@@ -174,6 +175,7 @@ public class CustomerMenu {
 				accDao.updateBalance(account.getAcc_id(), afterTransferBalance);
 			} else {
 				System.out.println("Error: Transfer not accepted! ");
+				loggy.info("Error: Transfer not accepted! ");
 			}
 
 			// Transfer To
@@ -192,20 +194,13 @@ public class CustomerMenu {
 
 			System.out.println(fromAcctType.toUpperCase() + " BALANCE: " + afterTransferBalance);
 			System.out.println(toAcctType.toUpperCase() + " BALANCE: " + recipientTransferBalance + "/n/n");
-
+			loggy.info(fromAcctType.toUpperCase() + " BALANCE: " + afterTransferBalance);
+			loggy.info(toAcctType.toUpperCase() + " BALANCE updated! " );
 			displayCustomerMenu(userId);
 
 			break;
 		case 4: // Show's the customer their balance.
-//
-//			System.out.println("Which account?");
-//			System.out.println(" ");
-//			System.out.println(" 1) Checking");
-//			System.out.println(" 2) Savings");
-////			System.out.println(" 3) Joint");
-//
-//			// Checks chosen option
-//			sc = new Scanner(System.in);
+			loggy.info("User selected 4: Customer is shown Balance");
 
 			int viewChoice = chooseAccount(); //sc.nextInt();
 
@@ -222,17 +217,20 @@ public class CustomerMenu {
 			double viewBalance = account.getBalance();
 
 			System.out.println(viewAcct.toUpperCase() + " BALANCE : " + viewBalance + "\n\n");
-
+			loggy.info(viewAcct.toUpperCase() + " BALANCE : " + viewBalance);
 			displayCustomerMenu(userId);
 
 			break;
 		case 5: // Exits to main menu
+			loggy.info("User selected 5");
 			System.out.println("Thank you! Come again! \n\n");
+			loggy.info("User exits customer menu");
 			break;
 		}
 	}
 
 	private int chooseAccount() {
+		loggy.info("User choose an account type");
 		System.out.println("Which account?");
 		System.out.println(" ");
 		System.out.println(" 1) Checking");
@@ -272,8 +270,8 @@ public class CustomerMenu {
 		
 		account = accDao.createAccount(acctType, newCust);
 		
-		System.out.println("Congratulations on creating your " + acctType + "account! ");
-		
+		System.out.println("Congratulations on creating your " + acctType.toUpperCase() + " account! ");
+		loggy.info("Congratulations on creating your " + acctType.toUpperCase() + " account! ");
 		
 		// TODO DISPLAY SOMETHING TO CONSOLE
 		
@@ -283,7 +281,7 @@ public class CustomerMenu {
 
 	private Customer createApplication() {
 		// TODO Auto-generated method stub
-		
+		loggy.info("User chooses to create an application");
 		cust = new Customer();
 		user = new User();
 		
@@ -317,7 +315,7 @@ public class CustomerMenu {
 		System.out.println("Are you the primary customer on the account? ( true / false ): ");
 		cust.setPrimaryCustomer(sc.nextBoolean());
 		
-		
+		loggy.info("All information has been entered by the user! ");
 		
 		return cust;
 		
