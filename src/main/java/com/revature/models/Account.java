@@ -1,5 +1,10 @@
 package com.revature.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Account extends User {
 	
 	// VARIABLES
@@ -13,8 +18,6 @@ public class Account extends User {
 	public double balance;
 	
 	public boolean isApproved;
-	
-	public boolean isDenied;
 	
 	
 	// STORING ACCOUNT TYPES
@@ -36,7 +39,6 @@ public class Account extends User {
 		this.accountType = accountType;
 		this.balance = balance;
 		this.isApproved = isApproved;
-		this.isDenied = isDenied;
 	}
 
 
@@ -80,7 +82,6 @@ public class Account extends User {
 		this.accountType = accountType;
 		this.balance = balance;
 		this.isApproved = isApproved;
-		this.isDenied = isDenied;
 	}
 	
 	
@@ -113,9 +114,6 @@ public class Account extends User {
 	}
 
 
-	public boolean isDenied() {
-		return isDenied;
-	}
 	
 	
 	// SETTERS
@@ -147,12 +145,19 @@ public class Account extends User {
 	}
 
 
-	public void setDenied(boolean isDenied) {
-		this.isDenied = isDenied;
+	public void updateBalance() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public String toString() {
+		return "Account [acc_id=" + acc_id + ", account_num=" + account_num + ", accountType=" + accountType
+				+ ", balance=" + balance + ", isApproved=" + isApproved + "]";
 	}
 	
 	
-	
-	
+
 
 }

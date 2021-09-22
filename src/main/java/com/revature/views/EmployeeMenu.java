@@ -10,6 +10,11 @@ import com.revature.models.Account;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
 import com.revature.models.User;
+import com.revature.repo.AccountDAO;
+import com.revature.repo.CustomerDAO;
+import com.revature.repo.EmployeeDAO;
+import com.revature.repo.TransactionDAO;
+import com.revature.repo.UserDAO;
 import com.revature.service.BankService;
 import com.revature.util.ConnectionUtil;
 
@@ -23,14 +28,31 @@ public class EmployeeMenu extends Employee {
 	BankService service;
 	Account account;
 	Customer cust;
+
+	CustomerDAO custDao;
+
+	UserDAO userDao;
+
+	TransactionDAO txnDao;
+
+	AccountDAO accDao;
+
+	EmployeeDAO empDao;
 	
-	public void prettyDisplayOfInfo() {
-		
+	public EmployeeMenu(CustomerDAO custDao, UserDAO userDao, AccountDAO accDao, TransactionDAO txnDao, EmployeeDAO empDao) {
+		this.custDao = custDao;
+		this.userDao = userDao;
+		this.accDao = accDao;
+		this.txnDao = txnDao;
+		this.empDao = empDao;
+
 	}
 	
-	public void displayEmployeeMenu() {
+	public void displayEmployeeMenu(int userId) {
 		// Employee menu explaining all options available to the employee
-			System.out.println("Welcome back " + user.getFname() + " " + user.getLname() + "!");
+		emp = empDao.selectEmployeeById(userId);
+		
+			System.out.println("Welcome back employee!");
 			System.out.println(" ");
 			System.out.println(" 1) Approve an Application");
 			System.out.println(" 2) Deny an Application");
@@ -51,64 +73,111 @@ public class EmployeeMenu extends Employee {
 				Customer customer = selectCustomer(idEntry);
 				
 				
-				selectCustomerAccount();
-				updateAccount(account, true);
+				selectCustomerAccount(customer.getCust_id());
+				updateAccount(account, true, userId);
 				
+				System.out.println("You have approved the application for Customer ID#: " + idEntry + "\n\n");
+				displayEmployeeMenu(userId);
 				break;
 			case 2: // Denies a customer account
+				System.out.println("Please enter the customer ID for the account you want to approve:");
+				System.out.println("Customer ID #: ");
+				
 				int idEntry2 = sc.nextInt();
 				
 				Customer customer2 = selectCustomer(idEntry2);
 				
-				selectCustomerAccount();
-				updateAccount(account, false);
+				selectCustomerAccount(customer2.getCust_id());
+				updateAccount(account, false, userId);
+				
+				System.out.println("You have denied the application for Customer ID#: " + idEntry2 + "\n\n");
+				
+				displayEmployeeMenu(userId);
 				break;
 			case 3: // Selects customer account and views account info
 
 				
-				int idEntry3 = sc.nextInt();
+				System.out.println("Which account?");
+				System.out.println(" ");
+				System.out.println(" 1) Checking");
+				System.out.println(" 2) Savings");
+//				System.out.println(" 3) Joint");
+
+				// Checks chosen option
+				sc = new Scanner(System.in);
+
+				int viewAcctType = sc.nextInt();
 				
-				Customer customer3 = selectCustomer(idEntry3);
+				String viewAcct;
+				
+				if (viewAcctType == 1) {
+					viewAcct = "checking";
+				} else {
+					viewAcct = "savings";
+				}
+				
+				Customer customer3 = custDao.selectCustomerById(userId);
 								
-				System.out.println(selectCustomerAccount());
+				account = accDao.selectAccountData(viewAcctType, viewAcct);
 				
+				if (account.getAcc_id() > 0) {
+					System.out.println("Customer Name: " + customer3.getFname() + " " + customer3.getLname());
+					System.out.println("Account Number: " + account.getAccount_num());
+					System.out.println("Account Type: " + account.getAccountType());
+					System.out.println("Balance: " + account.getBalance()+"\n\n");
+				} else {
+					System.out.println("Account does not exist.\n\n");
+				}
+				displayEmployeeMenu(userId);
 				break;
 			case 4: //Exits to main menu
 				System.out.println("Thank you! Come again!");
-				mainMenu.userLoginMenu();
+	//			mainMenu.userLoginMenu();
 				break;
 			}
 	}
 
-	private boolean selectCustomerAccount() {
+	public Account selectCustomerAccount(int cust_id) {
 		// TODO Auto-generated method stub
 		
-		boolean success = false;
+//		boolean success = false;
+//		
+//		account = new Account();
+//		
+//		try
+//		{
+//			
+//			Connection connection = connectionUtil.getConnection();
+//			
+//			String sql = "SELECT * FROM account_table WHERE foreign_primary_custID = ?";
+//			
+//			PreparedStatement ps = connection.prepareStatement(sql);
+//
+//			ps.setInt(1, cust_id);		
+//
+//			ResultSet rs = ps.executeQuery();
+//
+//			while(rs.next()) {
+//			
+//			 account.setCust_id(rs.getInt("primary_custId"));
+//			 account.setFname(rs.getString("cust_fname"));
+//			 account.setLname(rs.getString("cust_lname"));
+//			 account.setPhoneNum(rs.getString("cust_phoneNum"));
+//			 account.setDob(rs.getString("dob"));
+//			
+//			}
+//		} 
+//		catch (SQLException e) 
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		try
-		{
-			
-			Connection connection = connectionUtil.getConnection();
-			
-			String sql = "SELECT * FROM account_table WHERE foreign_cust_id = ?";
-			
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ps.setInt(1, cust.getCust_id());
-			ps.execute();		
-			success = true;
-		} 
-		catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return success;
+		return account;
 		
 	}
 
-	private boolean updateAccount(Account account, boolean isApproved) {
+	private boolean updateAccount(Account account, boolean isApproved, int user_id) {
 		// TODO Auto-generated method stub
 		
 		boolean success = false;
@@ -122,7 +191,7 @@ public class EmployeeMenu extends Employee {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			ps.setBoolean(1, isApproved);
-			ps.setInt(2, user.getUser_id());
+			ps.setInt(2, user_id);
 			ps.execute();		
 			success = true;
 		} 

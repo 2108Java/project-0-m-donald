@@ -4,7 +4,7 @@ import com.revature.models.User;
 
 public interface AuthenticateUser {
 	
-	boolean authenticate(String username, String password);
+	int authenticate(String username, String password);
 
 	User getUser(String username);
 

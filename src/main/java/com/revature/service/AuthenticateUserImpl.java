@@ -25,7 +25,7 @@ public class AuthenticateUserImpl implements AuthenticateUser {
 	}
 
 	@Override
-	public boolean authenticate(String username, String password) {
+	public int authenticate(String username, String password) {
 		// TODO Auto-generated method stub
 		
 		User user = getUser(username); 
@@ -35,12 +35,12 @@ public class AuthenticateUserImpl implements AuthenticateUser {
 		if(user != null) {
 			if(user.getPassword() != null && user.getPassword().equals(password)) {
 				
-				authenticated = true;
+				return user.getUser_id();
 			}
 			
 		}
 		
-		return authenticated;
+		return 0;
 	}
 
 	@Override

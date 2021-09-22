@@ -10,7 +10,7 @@ public class ConnectionUtil {
 	// database-1.ccxgyhzlbz4s.us-east-2.rds.amazonaws.com/postgres
 	private static final String USERNAME = "postgres";
 	private static final String PASSWORD = "miaduuh1";
-	private String dbLocation = "localhost";
+	private String dbLocation = "localhost:5432";
 	private String username = "postgres";
 	private String password = "miaduuh1";
 	private String url = "jdbc:postgresql://" + dbLocation + "/postgres";

@@ -11,5 +11,7 @@ public interface UserDAO {
 //	public User loginToAccount(); // As a user, I can login.
 	
 	public User  selectUserByUsername(String username);  // Selects a user by username 
+
+	public int createUser(User user);
 	
 }

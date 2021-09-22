@@ -17,5 +17,9 @@ public interface CustomerDAO {
 	
 	public double acceptMoneyTransferFromAnotherAccount(double postAmount); // As a customer, I can accept a money transfer from another account.
 	
-	public Customer selectCustomerById(Customer cust_id);
+	public Customer selectCustomerById(int user_id);
+
+	public boolean createUserAccount();
+
+	public Customer createCustomer(int userID, Customer customer);
 }

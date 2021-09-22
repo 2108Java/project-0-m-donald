@@ -2,6 +2,7 @@ package com.revature.repo;
 
 import com.revature.models.Account;
 import com.revature.models.Customer;
+import com.revature.models.Employee;
 import com.revature.models.Transaction;
 import com.revature.models.User;
 
@@ -20,5 +21,7 @@ public interface EmployeeDAO {
 	public boolean selectCustomerAccount(Account account); // As an employee, I can view a customer's bank accounts.
 	
 	public boolean selectUserByUserID(User u);
+
+	public Employee selectEmployeeById(int userId);
 
 }
